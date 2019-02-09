@@ -9,15 +9,14 @@ import (
 	"net/http"
 )
 
-type Request struct {
-	Username string
-	Email string
-	Password string
-}
-
-type Response struct {
+type signupResponse struct {
 	Id uint `json:"id"`
 	Message string `json:"message"`
+}
+
+type publicUser struct {
+	Username string `json:"username"`
+	Email string `json:"email"`
 }
 
 func Signup(w http.ResponseWriter, r *http.Request) {
@@ -32,10 +31,25 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	response := Response{
+	response := signupResponse{
 		Id:user.ID,
 		Message:"User created successfully!",
 	}
 	helper.RespondwithJSON(w, http.StatusOK,response)
+	return
+}
+
+func GetUsers(w http.ResponseWriter, r *http.Request) {
+	users := []models.User{}
+	if dbc:= db.GetDb().Find(&users); dbc.Error != nil {
+		helper.RespondWithError(w, http.StatusBadRequest, dbc.Error)
+		return
+	}
+	publicUsers := []publicUser{}
+	for _,user := range users {
+		publicUser := publicUser{Username:user.Username, Email:user.Email}
+		publicUsers = append(publicUsers, publicUser)
+	}
+	helper.RespondwithJSON(w, http.StatusOK,publicUsers)
 	return
 }
