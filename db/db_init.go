@@ -13,7 +13,7 @@ var db *gorm.DB
 func init() {
 
 	log.Println(getDatasource())
-	conn, err := gorm.Open("mysql", "monstar-lab:password@tcp(localhost:3306)/testapplication?parseTime=true")
+	conn, err := gorm.Open("mysql", "monstar-lab:password@tcp(mysql:3306)/testapplication?parseTime=true")
 	if err != nil {
 		panic("Error connecting to DB")
 	}

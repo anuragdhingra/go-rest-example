@@ -6,6 +6,7 @@ import (
 	"github.com/anuragdhingra/go-rest-example/db"
 	"github.com/anuragdhingra/go-rest-example/db/models"
 	"github.com/anuragdhingra/go-rest-example/pkg/helper"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -21,7 +22,8 @@ type publicUser struct {
 
 func Signup(w http.ResponseWriter, r *http.Request) {
 	user := models.User{}
-	err := json.NewDecoder(r.Body).Decode(&user)
+	byteUser, _ := ioutil.ReadAll(r.Body)
+	err := json.Unmarshal(byteUser,&user)
 	if err != nil {
 		fmt.Println("Error decoding JSON:", err)
 		return
