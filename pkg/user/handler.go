@@ -3,8 +3,8 @@ package user
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/anuragdhingra/go-rest-example/conf"
-	"github.com/anuragdhingra/go-rest-example/models"
+	"github.com/anuragdhingra/go-rest-example/db"
+	"github.com/anuragdhingra/go-rest-example/db/models"
 	"github.com/anuragdhingra/go-rest-example/pkg/helper"
 	"net/http"
 )
@@ -27,7 +27,7 @@ func Signup(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error decoding JSON:", err)
 		return
 	}
-	if dbc:= conf.GetDb().Create(&user); dbc.Error != nil {
+	if dbc:= db.GetDb().Create(&user); dbc.Error != nil {
 		helper.RespondWithError(w, http.StatusBadRequest, dbc.Error)
 		return
 	}

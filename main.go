@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	_ "github.com/anuragdhingra/go-rest-example/conf"
+	_ "github.com/anuragdhingra/go-rest-example/db"
 	"github.com/anuragdhingra/go-rest-example/pkg/user"
 	"github.com/go-chi/chi"
 	"log"

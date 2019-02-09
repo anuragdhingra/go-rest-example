@@ -1,7 +1,7 @@
-package conf
+package db
 
 import (
-	"github.com/anuragdhingra/go-rest-example/models"
+	"github.com/anuragdhingra/go-rest-example/db/models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	)

@@ -2,6 +2,14 @@
 
 
 [[projects]]
+  digest = "1:b8d8afedc1ea9028d6b8a037a61acaf5bac8ffb1ceb4b285a0af6654bfc62f16"
+  name = "github.com/go-chi/chi"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "1a6bb108ccf279c8dac6f9bad857d773b4f9b421"
+  version = "v4.0.1"
+
+[[projects]]
   digest = "1:ec6f9bf5e274c833c911923c9193867f3f18788c461f76f05f62bb1510e0ae65"
   name = "github.com/go-sql-driver/mysql"
   packages = ["."]
@@ -40,6 +48,7 @@
   analyzer-name = "dep"
   analyzer-version = 1
   input-imports = [
+    "github.com/go-chi/chi",
     "github.com/jinzhu/gorm",
     "github.com/jinzhu/gorm/dialects/mysql",
   ]
