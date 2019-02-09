@@ -9,7 +9,7 @@ import (
 var db *gorm.DB
 
 func init() {
-	conn, err := gorm.Open("mysql", "monstar-lab:password@/testapplication?charset=utf8&parseTime=True")
+	conn, err := gorm.Open("mysql", "monstar-lab:password@tcp(mysql:3306)/testapplication?charset=utf8&parseTime=True")
 
 	if err != nil {
 		panic("Error connecting to DB")

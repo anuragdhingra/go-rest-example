@@ -1,0 +1,25 @@
+version: '3'
+services:
+  app:
+    build: .
+    command: ["./wait-for-it.sh", "mysql:3306", "--", "go", "run", "main.go"]
+    volumes:
+      - .:/go/src/github.com/anuragdhingra/go-rest-example
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    container_name: go-rest-example
+
+  mysql:
+    image: mysql:5
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: monstar-lab
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: testapplication
+    container_name: mysql
