@@ -13,7 +13,7 @@ var router *chi.Mux
 func main() {
 	router = chi.NewRouter()
 
-	router.Post("/signup", user.Signup)
+	router.Post("/signup",user.Signup)
 	router.Get("/users", user.GetUsers)
 	log.Fatal(http.ListenAndServe("0.0.0.0:8080", Logger()))
 }
