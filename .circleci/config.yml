@@ -3,6 +3,11 @@ jobs:
   build:
     docker:
       - image: circleci/golang:1.9
+        environment:
+          DB_HOST: localhost
+          DB_USER: monstar-lab
+          DB_PASS: password
+          DB_NAME: testapplication
       - image: circleci/mysql:5.7
         environment:
           MYSQL_ROOT_PASSWORD: password
