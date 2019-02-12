@@ -5,6 +5,11 @@ services:
     command: ["./wait-for-it.sh", "mysql:3306", "--", "go", "run", "main.go"]
     volumes:
       - .:/go/src/github.com/anuragdhingra/go-rest-example
+    environment:
+        - DB_HOST=mysql
+        - DB_USER=monstar-lab
+        - DB_PASS=password
+        - DB_NAME=testapplication
     ports:
       - 8080:8080
     depends_on:

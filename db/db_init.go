@@ -13,7 +13,7 @@ var db *gorm.DB
 func init() {
 
 	log.Println(getDatasource())
-	conn, err := gorm.Open("mysql", "monstar-lab:password@tcp(localhost:3306)/testapplication?parseTime=true")
+	conn, err := gorm.Open("mysql", getDatasource())
 	if err != nil {
 		panic("Error connecting to DB")
 	}
@@ -28,6 +28,6 @@ func GetDb() *gorm.DB  {
 
 func getDatasource() (dataSource string) {
 	dataSource = os.Getenv("DB_USER") + ":" + os.Getenv("DB_PASS") +
-		"@tcp(mysql:3306)/" + os.Getenv("DB_NAME") + "?parseTime=true"
+		"@tcp(" + os.Getenv("DB_HOST") + ":3306)/" + os.Getenv("DB_NAME") + "?parseTime=true"
 	return
 }
