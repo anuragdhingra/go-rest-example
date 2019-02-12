@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.9
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_USER: monstar-lab
+          MYSQL_PASSWORD: password
+          MYSQL_DATABASE: testapplication
+
+    working_directory: /go/src/github.com/anuragdhingra/go-rest-example
+
+    steps:
+      - checkout
+      - run: go get -u github.com/golang/dep/cmd/dep
+      - run:
+          name: run build
+          command: |
+            dep ensure
+            go build -v
+      - run:
+          name: run tests
+          command: go test -v ./...
